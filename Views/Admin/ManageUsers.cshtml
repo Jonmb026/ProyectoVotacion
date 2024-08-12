@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ProyectoVotacion.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Gestión de Usuarios";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="mb-3">
+    <a asp-action="CreateUsuario" class="btn btn-success">Crear Nuevo Usuario</a>
+</div>
+
+<div class="card">
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Cédula</th>
+                <th>Nombre</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Provincia</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model)
+            {
+                <tr>
+                    <td>@usuario.Cedula</td>
+                    <td>@usuario.Nombre</td>
+                    <td>@usuario.PrimerApellido</td>
+                    <td>@usuario.SegundoApellido</td>
+                    <td>@usuario.FechaNacimiento.ToShortDateString()</td>
+                    <td>@usuario.Provincia</td>
+                    <td>@usuario.Email</td>
+                    <td>@usuario.Rol</td>
+                    <td>
+                        <a asp-action="EditUsuario" asp-route-id="@usuario.Id" class="btn btn-warning">Editar</a>
+                        <form asp-action="DeleteUsuario" method="post" class="action-form" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">
+                            <input type="hidden" name="id" value="@usuario.Id" />
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

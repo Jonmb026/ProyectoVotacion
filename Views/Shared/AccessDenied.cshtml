@@ -1,0 +1,11 @@
+﻿@model string
+
+@{
+    ViewData["Title"] = "Acceso Denegado";
+}
+
+<div class="container mt-5">
+    <h2 class="text-danger">Acceso Denegado</h2>
+    <p>No tienes permisos para acceder a esta página.</p>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Volver a la página de inicio</a>
+</div>

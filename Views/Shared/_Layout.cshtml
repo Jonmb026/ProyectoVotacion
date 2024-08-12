@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Proyecto de Votación</title>
+    <link rel="stylesheet" href="~/css/styles.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+                <li><a href="@Url.Action("Index", "Admin")">Candidatos</a></li>
+                <li><a href="@Url.Action("ManageUsers", "Admin")">Usuarios</a></li>
+                <li><a href="@Url.Action("Votar", "Votante")">Votación</a></li>
+                <li><a href="@Url.Action("ResultadoFinal", "Admin")">Resultado Final</a></li>
+                <li>
+                    <form asp-action="Logout" asp-controller="Auth" method="post" class="logout-form">
+                        <button type="submit" class="logout-button">Cerrar Sesión</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main" class="container">
+        @RenderBody()
+    </main>
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Proyecto de Votación</p>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

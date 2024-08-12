@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProyectoVotacion.Models.Candidato>
+
+@{
+    ViewData["Title"] = "Votar";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+@if (Model != null && Model.Any())
+{
+    <div class="card">
+        <div class="card-body">
+            <h4>Lista de Candidatos</h4>
+            <form asp-action="Votar" method="post">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Primer Apellido</th>
+                            <th>Cargo</th>
+                            <th>Provincia</th>
+                            <th>Partido</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var candidato in Model)
+                        {
+                            <tr>
+                                <td>@candidato.Nombre</td>
+                                <td>@candidato.PrimerApellido</td>
+                                <td>@candidato.Cargo</td>
+                                <td>@candidato.Provincia</td>
+                                <td>@candidato.Partido</td>
+                                <td>
+                                    <button type="submit" name="candidatoId" value="@candidato.Id" class="btn btn-primary">Votar</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    <p>No hay candidatos disponibles para votar.</p>
+}

@@ -1,0 +1,52 @@
+﻿@model Usuario
+
+<form asp-action="Register" method="post">
+    <div>
+        <label for="Cedula">Cédula:</label>
+        <input type="text" id="Cedula" name="Cedula" required />
+    </div>
+    <div>
+        <label for="FechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="FechaNacimiento" name="FechaNacimiento" required />
+    </div>
+    <div>
+        <label for="Nombre">Nombre:</label>
+        <input type="text" id="Nombre" name="Nombre" required />
+    </div>
+    <div>
+        <label for="PrimerApellido">Primer Apellido:</label>
+        <input type="text" id="PrimerApellido" name="PrimerApellido" required />
+    </div>
+    <div>
+        <label for="SegundoApellido">Segundo Apellido:</label>
+        <input type="text" id="SegundoApellido" name="SegundoApellido" required />
+    </div>
+    <div>
+        <label for="Provincia">Provincia:</label>
+        <select id="Provincia" name="Provincia">
+            <option value="San José">San José</option>
+            <option value="Alajuela">Alajuela</option>
+            <option value="Cartago">Cartago</option>
+            <option value="Heredia">Heredia</option>
+            <option value="Guanacaste">Guanacaste</option>
+            <option value="Puntarenas">Puntarenas</option>
+            <option value="Limón">Limón</option>
+        </select>
+    </div>
+    <div>
+        <label for="Email">Email:</label>
+        <input type="email" id="Email" name="Email" required />
+    </div>
+    <div>
+        <label for="Password">Password:</label>
+        <input type="password" id="Password" name="Password" required />
+    </div>
+    <div>
+        <label for="Rol">Rol:</label>
+        <select id="Rol" name="Rol">
+            <option value="Admin">Admin</option>
+            <option value="Votante">Votante</option>
+        </select>
+    </div>
+    <button type="submit">Registrar</button>
+</form>

@@ -1,0 +1,82 @@
+﻿@model ProyectoVotacion.Models.Usuario
+
+@{
+    ViewData["Title"] = "Editar Usuario";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="EditUsuario" method="post">
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        <label for="Cedula">Cédula</label>
+        <input type="text" class="form-control" id="Cedula" name="Cedula" value="@Model.Cedula" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Nombre">Nombre</label>
+        <input type="text" class="form-control" id="Nombre" name="Nombre" value="@Model.Nombre" required />
+    </div>
+
+    <div class="form-group">
+        <label for="PrimerApellido">Primer Apellido</label>
+        <input type="text" class="form-control" id="PrimerApellido" name="PrimerApellido" value="@Model.PrimerApellido" required />
+    </div>
+
+    <div class="form-group">
+        <label for="SegundoApellido">Segundo Apellido</label>
+        <input type="text" class="form-control" id="SegundoApellido" name="SegundoApellido" value="@Model.SegundoApellido" />
+    </div>
+
+    <div class="form-group">
+        <label for="FechaNacimiento">Fecha de Nacimiento</label>
+        <input type="date" class="form-control" id="FechaNacimiento" name="FechaNacimiento" value="@Model.FechaNacimiento.ToString("yyyy-MM-dd")" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Provincia">Provincia</label>
+        <select class="form-control" id="Provincia" name="Provincia" required>
+            @foreach (var provincia in ViewBag.Provincias)
+            {
+                if (Model.Provincia == provincia)
+                {
+                    <option value="@provincia" selected>@provincia</option>
+                }
+                else
+                {
+                    <option value="@provincia">@provincia</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Password">Password</label>
+        <input type="password" class="form-control" id="Password" name="Password" value="@Model.Password" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Rol">Rol</label>
+        <select class="form-control" id="Rol" name="Rol" required>
+            @if (Model.Rol == "Admin")
+            {
+                <option value="Admin" selected>Admin</option>
+                <option value="Votante">Votante</option>
+            }
+            else if (Model.Rol == "Votante")
+            {
+                <option value="Admin">Admin</option>
+                <option value="Votante" selected>Votante</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-action="ManageUsers" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ProyectoVotacion.Models.Candidato>
+
+@{
+    ViewData["Title"] = "Gestión de Candidatos";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<a asp-action="CreateCandidato" class="btn btn-primary">Agregar Nuevo Candidato</a>
+
+<div class="card">
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>Cédula</th>
+                <th>Cargo</th>
+                <th>Provincia</th>
+                <th>Partido</th>
+                <th>Eslogan</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var candidato in Model)
+            {
+                <tr>
+                    <td>@candidato.Nombre</td>
+                    <td>@candidato.PrimerApellido</td>
+                    <td>@candidato.SegundoApellido</td>
+                    <td>@candidato.Cedula</td>
+                    <td>@candidato.Cargo</td>
+                    <td>@candidato.Provincia</td>
+                    <td>@candidato.Partido</td>
+                    <td>@candidato.Eslogan</td>
+                    <td>
+                        <a asp-action="EditCandidato" asp-route-id="@candidato.Id" class="btn btn-warning">Editar</a>
+                        <form asp-action="DeleteCandidato" method="post" class="action-form">
+                            <input type="hidden" name="id" value="@candidato.Id" />
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Botón para Generar Resultados -->
+@if (User.IsInRole("Admin"))
+{
+    <form asp-action="GenerateResult" method="post">
+        <button type="submit" class="btn btn-success">Generar Resultado Final</button>
+    </form>
+}

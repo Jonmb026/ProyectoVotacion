@@ -1,0 +1,39 @@
+﻿@model List<ProyectoVotacion.Models.ResultadoVoto>
+
+<h2>Resultados de la votación</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Candidato</th>
+                <th>Partido</th>
+                <th>Votos</th>
+                <th>Porcentaje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var resultado in Model)
+            {
+                <tr>
+                    <td>@resultado.Candidato</td>
+                    <td>@resultado.Partido</td>
+                    <td>@resultado.Votos</td>
+                    <td>@resultado.Porcentaje:F2%</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No se ha generado ningún resultado final aún.</p>
+}
+
+@if (User.IsInRole("Admin"))
+{
+    <form asp-action="GenerateResult" method="post">
+        <button type="submit" class="btn btn-success">Generar Resultado Final</button>
+    </form>
+}

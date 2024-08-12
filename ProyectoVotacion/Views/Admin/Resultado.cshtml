@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ProyectoVotacion.Models.ResultadoVoto>
+
+@{
+    ViewData["Title"] = "Resultado de la Votación";
+}
+
+<div class="container mt-5">
+    <h1 class="display-4">Resultado de la Votación</h1>
+
+    @if (!string.IsNullOrEmpty(ViewBag.MensajeResultado))
+    {
+        <div class="alert alert-info">
+            @ViewBag.MensajeResultado
+        </div>
+    }
+
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Candidato</th>
+                <th>Partido</th>
+                <th>Votos</th>
+                <th>Porcentaje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var resultado in Model)
+            {
+                <tr>
+                    <td>@resultado.Candidato</td>
+                    <td>@resultado.Partido</td>
+                    <td>@resultado.Votos</td>
+                    <td>@resultado.Porcentaje:F2%</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

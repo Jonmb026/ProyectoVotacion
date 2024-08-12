@@ -1,0 +1,39 @@
+﻿@model List<ProyectoVotacion.Models.ResultadoVoto>
+
+<h2>Resultado Final</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.MensajeResultado))
+{
+    <div class="alert alert-success">@ViewBag.MensajeResultado</div>
+}
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Candidato</th>
+                <th>Partido</th>
+                <th>Votos</th>
+                <th>Porcentaje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var resultado in Model)
+            {
+                <tr>
+                    <td>@resultado.Candidato</td>
+                    <td>@resultado.Partido</td>
+                    <td>@resultado.Votos</td>
+                    <td>@resultado.Porcentaje:F2%</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No se ha generado ningún resultado final aún.</p>
+}
+
+<a href="@Url.Action("Index", "Home")" class="btn btn-primary">Volver al inicio</a>

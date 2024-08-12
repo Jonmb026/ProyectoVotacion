@@ -1,0 +1,44 @@
+﻿@model List<ProyectoVotacion.Models.ResultadoVoto>
+
+@{
+    ViewData["Title"] = "Resultado de la Votación";
+    var esAdmin = User.IsInRole("Admin");
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (ViewBag.MensajeResultado != null)
+{
+    <div class="alert alert-info">
+        @ViewBag.MensajeResultado
+    </div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Candidato</th>
+            <th>Partido</th>
+            <th>Votos</th>
+            <th>Porcentaje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var resultado in Model)
+        {
+            <tr>
+                <td>@resultado.Candidato</td>
+                <td>@resultado.Partido</td>
+                <td>@resultado.Votos</td>
+                <td>@resultado.Porcentaje.ToString("F2")%</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (esAdmin)
+{
+    <form asp-action="GenerateResult" method="post">
+        <button type="submit" class="btn btn-primary">Generar Resultado Final</button>
+    </form>
+}

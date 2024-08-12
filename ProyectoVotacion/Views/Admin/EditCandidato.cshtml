@@ -1,0 +1,79 @@
+﻿@model ProyectoVotacion.Models.Candidato
+
+@{
+    ViewData["Title"] = "Editar Candidato";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="EditCandidato" method="post">
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        <label for="Nombre">Nombre</label>
+        <input type="text" class="form-control" id="Nombre" name="Nombre" value="@Model.Nombre" required />
+    </div>
+
+    <div class="form-group">
+        <label for="PrimerApellido">Primer Apellido</label>
+        <input type="text" class="form-control" id="PrimerApellido" name="PrimerApellido" value="@Model.PrimerApellido" required />
+    </div>
+
+    <div class="form-group">
+        <label for="SegundoApellido">Segundo Apellido</label>
+        <input type="text" class="form-control" id="SegundoApellido" name="SegundoApellido" value="@Model.SegundoApellido" />
+    </div>
+
+    <div class="form-group">
+        <label for="Cedula">Cédula</label>
+        <input type="text" class="form-control" id="Cedula" name="Cedula" value="@Model.Cedula" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Cargo">Cargo</label>
+        <select class="form-control" id="Cargo" name="Cargo" required>
+            @foreach (var cargo in ViewBag.Cargos)
+            {
+                if (Model.Cargo == cargo)
+                {
+                    <option value="@cargo" selected>@cargo</option>
+                }
+                else
+                {
+                    <option value="@cargo">@cargo</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="Provincia">Provincia</label>
+        <select class="form-control" id="Provincia" name="Provincia" required>
+            @foreach (var provincia in ViewBag.Provincias)
+            {
+                if (Model.Provincia == provincia)
+                {
+                    <option value="@provincia" selected>@provincia</option>
+                }
+                else
+                {
+                    <option value="@provincia">@provincia</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="Partido">Partido</label>
+        <input type="text" class="form-control" id="Partido" name="Partido" value="@Model.Partido" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Eslogan">Eslogan</label>
+        <textarea class="form-control" id="Eslogan" name="Eslogan">@Model.Eslogan</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+
+<a asp-action="Index" class="btn btn-secondary">Cancelar</a>
